@@ -1,11 +1,13 @@
 package ru.nicode.service;
 
+import org.springframework.stereotype.Service;
 import ru.nicode.exception.NotFoundException;
 import ru.nicode.model.Post;
 import ru.nicode.repository.PostRepository;
 
 import java.util.List;
 
+@Service
 public class PostService {
     private final PostRepository repository;
 

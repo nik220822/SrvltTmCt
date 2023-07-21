@@ -1,5 +1,6 @@
 package ru.nicode.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.nicode.exception.NotFoundException;
 import ru.nicode.model.Post;
 
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-
+@Repository
 public class PostRepository {
     private final ConcurrentHashMap<Long, Post> postsMap = new ConcurrentHashMap<>();
     private final AtomicLong id = new AtomicLong(0);
