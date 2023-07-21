@@ -1,5 +1,7 @@
 package ru.nicode.servlet;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.nicode.JC;
 import ru.nicode.controller.PostController;
 import ru.nicode.repository.PostRepository;
 import ru.nicode.service.PostService;
@@ -19,9 +21,11 @@ public class MainServlet extends HttpServlet {
 
     @Override
     public void init() {
-        repository = new PostRepository();
-        service = new PostService(repository);
-        controller = new PostController(service);
+        final var annotationConfigApplicationContext = new AnnotationConfigApplicationContext(JC.class);
+        controller = annotationConfigApplicationContext.getBean(PostController.class);
+//        repository = new PostRepository();
+//        service = new PostService(repository);
+//        controller = new PostController(service);
     }
 
     @Override
@@ -60,8 +64,6 @@ public class MainServlet extends HttpServlet {
     }
 
     private long IdFrom(String path) {
-//        String[] parts = path.split("/");
-//        return Long.parseLong(parts[parts.length - 1]);
         return Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
     }
 }
